@@ -1,0 +1,94 @@
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* VARIABLES */
+
+:root {
+  --p-2xs: 14px 13px;
+  --c-button: rgb(219, 230, 248);
+  --c-button-disabled: rgb(211, 214, 219);
+  --c-text: rgb(12, 60, 141);
+  --c-text-disabled: rgb(82, 96, 114);
+
+}
+
+/* BASICS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  color: var(--c-button);
+  overflow: hidden;
+}
+
+.landing-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.button {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--p-2xs);
+  border-radius: 6px;
+
+  padding: var(--p-2xs);
+  margin: 29px;
+
+  color: var(--c-text);
+  text-transform: capitalize;
+
+  cursor: pointer;
+  background-color: var(--c-button);
+  border: none;
+  outline: none;
+}
+
+.button:disabled {
+  background-color: var(--c-button-disabled);
+  color: var(--c-text-disabled)
+}
+
+.status-message {
+  color: black;
+}
+
+.error-message {
+  font-weight: bolder;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: bold;
+  align-items: center ;
+}
+
+.post-list-title {
+  align-self: flex-start;
+}
+
+.li {
+  padding-left: 6px;
+}
