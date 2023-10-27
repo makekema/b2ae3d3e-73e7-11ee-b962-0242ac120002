@@ -1,16 +1,19 @@
 /* FONTS */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
 
 /* VARIABLES */
 
 :root {
-  --p-2xs: 14px 13px;
-  --c-button: rgb(219, 230, 248);
-  --c-button-disabled: rgb(211, 214, 219);
-  --c-text: rgb(12, 60, 141);
-  --c-text-disabled: rgb(82, 96, 114);
+  --p-sm: 12px;
+  --p-md: 24px; /* 25px */
+  --p-lg: 32px; /* 28px */
 
+  --c-button: rgba(226, 236, 249, 1);
+  --c-button-disabled: rgba(74, 92, 109, 0.2);
+  --c-text: rgba(0, 0, 0, 1);
+  --c-text-button: rgba(10, 80, 158, 1);
+  --c-text-button-disabled: rgba(101, 116, 133, 1);
 }
 
 /* BASICS */
@@ -21,9 +24,9 @@
   box-sizing: border-box;
   text-decoration: none;
 
-  font-size: 16px;
-  font-weight: 500;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Open Sans', system-ui, sans-serif;
 }
 
 html,
@@ -31,64 +34,59 @@ body,
 #root {
   width: 100%;
   height: 100%;
-  padding: 10px;
-
-  color: var(--c-button);
-  overflow: hidden;
 }
 
-.landing-page-container {
+h2,
+li {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+ul {
+  margin-left: 28px;
+}
+
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: var(--p-md);
+}
+
+.container {
+  width: 113px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  gap: var(--p-lg);
 }
 
-.button {
-  height: 36px;
+button {
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--p-2xs);
+
+  padding: var(--p-sm);
+  border: none;
   border-radius: 6px;
+  outline: none;
+  background-color: var(--c-button);
 
-  padding: var(--p-2xs);
-  margin: 29px;
-
-  color: var(--c-text);
+  color: var(--c-text-button);
   text-transform: capitalize;
 
   cursor: pointer;
-  background-color: var(--c-button);
-  border: none;
-  outline: none;
+
+  &:disabled {
+    background-color: var(--c-button-disabled);
+    color: var(--c-text-disabled)
+  }
 }
 
-.button:disabled {
-  background-color: var(--c-button-disabled);
-  color: var(--c-text-disabled)
-}
-
-.status-message {
-  color: black;
-}
-
-.error-message {
-  font-weight: bolder;
-}
-
-.post-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-weight: bold;
-  align-items: center ;
-}
-
-.post-list-title {
-  align-self: flex-start;
-}
-
-.li {
-  padding-left: 6px;
-}
+/* .posts {
+  align-self: start;
+} */

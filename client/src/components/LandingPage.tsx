@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { getAllPosts } from "../services/apiService";
 import { Post } from "../types/post";
 
 export function LandingPage() {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   async function handleClick(): Promise<void> {
     setIsLoading(true);
@@ -15,41 +15,61 @@ export function LandingPage() {
       setPosts(fetchedPosts);
     } catch (error) {
       setError("The posts could not be loaded.");
-      console.log(error);
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <div className="landing-page-container">
-      <button className="button" onClick={handleClick} disabled={isLoading}>
-        Load Posts
-      </button>
-      <div className="status-message">
+    <div className="container-wrapper">
+      <div className="container">
+        <button onClick={handleClick} disabled={isLoading}>
+          Load Posts
+        </button>
         {error ? (
-          <div className="error-message">
-            <h2>{error}</h2>
-          </div>
+          <ErrorMessage error={error}/>
         ) : isLoading ? (
-          <p>Loading posts...</p>
-        ) : (
-          posts.length > 0 && (
-            <div className="post-list">
-              <div className="post-list-title">
-                <h2>Posts</h2>
-              </div>
-              <ul>
-                {posts.map((post) => (
-                  <li className="post-list-element" key={post.id}>
-                    {post.title}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
+          <LoadingMessage message={'Loading posts...'} />
+        ) : posts.length > 0 && (
+          <PostsOverview posts={posts} />
         )}
       </div>
     </div>
   );
+}
+
+interface ErrorMessageProps { 
+  error: string;
+}
+function ErrorMessage ({ error }: ErrorMessageProps) {
+  return (
+    <h2>{error}</h2>
+  )
+}
+
+interface LoadingMessageProps { 
+  message: string;
+}
+function LoadingMessage ({ message }: LoadingMessageProps) {
+  return (
+    <p>{message}</p>
+  )
+}
+
+interface PostsOverviewProps { 
+  posts: Post[];
+}
+function PostsOverview ({ posts }: PostsOverviewProps) {
+  return (
+    <div className="posts">
+      <h2>Posts:</h2>
+      <ul className="posts-list">
+        {posts.map((post) => (
+          <li key={post.id}>
+            {post.title}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
